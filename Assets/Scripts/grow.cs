@@ -50,7 +50,7 @@ public class grow : NetworkBehaviour
 	{
 		if(collision.gameObject.tag=="PlayerBody" || collision.gameObject.tag=="NpcBody")
 		{
-			if (collision.gameObject.GetComponent<BodyPart>().playerID != GetComponent<FoodScore>().playerID)
+			if (collision.gameObject.GetComponent<BodyPart>().playerID != GetComponent<FoodScore>().playerID && collision.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
 			{
 				for (int n = 1; n < Parts.Count; n++)
 				{
