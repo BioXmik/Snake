@@ -48,21 +48,18 @@ public class grow : NetworkBehaviour
 	[Server]
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag=="PlayerBody" || collision.gameObject.tag=="NpcBody")
+		if(collision.gameObject.tag=="NpcBody" && GetComponent<FishControl>() != null)
 		{
-			if (collision.gameObject.GetComponent<BodyPart>().playerID != GetComponent<FoodScore>().playerID && collision.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
+			for (int n = 1; n < Parts.Count; n++)
 			{
-				for (int n = 1; n < Parts.Count; n++)
-				{
-					NetworkServer.Destroy(Parts[n]);
-					Parts.Remove(Parts[n]);
-					
-					GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
-					foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
-					NetworkServer.Spawn(foodObject);
-				}
-				NetworkServer.Destroy(gameObject);
+				NetworkServer.Destroy(Parts[n]);
+				Parts.Remove(Parts[n]);
+				
+				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
+				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
+				NetworkServer.Spawn(foodObject);
 			}
+			NetworkServer.Destroy(gameObject);
 		}
 	}
 }
