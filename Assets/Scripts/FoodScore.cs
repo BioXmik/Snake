@@ -11,6 +11,14 @@ public class FoodScore : NetworkBehaviour
 	public int maxCordSpawnFood;
 	public GameObject foodPrefab;
 	
+	public int snakeID;
+	
+	[Server]
+	void Start()
+	{
+		snakeID = GetComponent<FishControl>().snakeID;
+	}
+	
 	[Server]
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
@@ -28,6 +36,7 @@ public class FoodScore : NetworkBehaviour
 			NetworkServer.Spawn(foodObject);
 			
 			GameObject fishBody = Instantiate(fishBodyPrefab, transform.position, Quaternion.identity);
+			fishBody.GetComponent<BodyPart>().snakeID = snakeID;
 			fishBody.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 			NetworkServer.Spawn(fishBody);
 			GetComponent<grow>().part = fishBody;

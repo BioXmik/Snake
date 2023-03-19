@@ -15,9 +15,15 @@ public class FishControl : NetworkBehaviour
 	public GameObject Canvas;
 	public Text mathIdText;
 	
-	[Client]
+	public int snakeID;
+	
     void Start()
     {
+		if (isServer)
+		{
+			snakeID = Random.Range(100000, 9999999);
+		}
+	
 		if (isLocalPlayer)
 		{
 			cam = Camera.main;
@@ -70,7 +76,7 @@ public class FishControl : NetworkBehaviour
 		Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 		float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
 		CmdSetRotate(rotateZ);
-		Invoke("Update01s", 0.05f);
+		Invoke("Update01s", 0.02f);
 	}
 	
 	[Command]

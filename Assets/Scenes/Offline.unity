@@ -447,7 +447,6 @@ GameObject:
   - component: {fileID: 1191364123}
   - component: {fileID: 1191364122}
   - component: {fileID: 1191364121}
-  - component: {fileID: 1191364124}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -521,18 +520,6 @@ Transform:
   m_Father: {fileID: 1682677229}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1191364124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191364120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1593229110
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,8 +699,8 @@ GameObject:
   - component: {fileID: 1778308317}
   - component: {fileID: 1778308315}
   - component: {fileID: 1778308318}
-  - component: {fileID: 1778308321}
   - component: {fileID: 1778308322}
+  - component: {fileID: 1778308323}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -737,10 +724,10 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   autoConnectClientBuild: 0
-  sendRate: 45
+  sendRate: 30
   offlineScene: Assets/Scenes/Offline.unity
   onlineScene: Assets/Scenes/Game.unity
-  transport: {fileID: 1778308321}
+  transport: {fileID: 1778308323}
   networkAddress: 138.68.167.198
   maxConnections: 100
   authenticator: {fileID: 0}
@@ -780,7 +767,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d09f5c8bf2f4747b7a9284ef5d9ce2a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1778308321
+--- !u!114 &1778308322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1778308314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetX: 0
+  offsetY: 0
+--- !u!114 &1778308323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -807,20 +808,6 @@ MonoBehaviour:
   sslCertJson: ./cert.json
   sslProtocols: 3072
   _logLevels: 0
---- !u!114 &1778308322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1778308314}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
 --- !u!1 &1945153255
 GameObject:
   m_ObjectHideFlags: 0

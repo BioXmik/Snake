@@ -31,8 +31,7 @@ public class Npc : NetworkBehaviour
 	{
 		if (targetFood != null)
 		{
-			var step =  speed * Time.deltaTime;
-			transform.position = Vector3.MoveTowards(transform.position, targetFood.transform.position, step);
+			transform.Translate(Vector3.up * speed * Time.deltaTime, Space.Self);
 		}
 	}
 	

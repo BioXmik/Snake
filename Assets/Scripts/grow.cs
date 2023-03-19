@@ -61,5 +61,33 @@ public class grow : NetworkBehaviour
 			}
 			NetworkServer.Destroy(gameObject);
 		}
+		
+		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() == null && collision.gameObject.GetComponent<BodyPart>().snakeID != GetComponent<FishControl>().snakeID)
+		{
+			for (int n = 1; n < Parts.Count; n++)
+			{
+				NetworkServer.Destroy(Parts[n]);
+				Parts.Remove(Parts[n]);
+				
+				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
+				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
+				NetworkServer.Spawn(foodObject);
+			}
+			NetworkServer.Destroy(gameObject);
+		}
+		
+		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() != null)
+		{
+			for (int n = 1; n < Parts.Count; n++)
+			{
+				NetworkServer.Destroy(Parts[n]);
+				Parts.Remove(Parts[n]);
+				
+				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
+				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
+				NetworkServer.Spawn(foodObject);
+			}
+			NetworkServer.Destroy(gameObject);
+		}
 	}
 }

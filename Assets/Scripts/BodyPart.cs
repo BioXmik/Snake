@@ -10,6 +10,8 @@ public class BodyPart : NetworkBehaviour
     private bool _spawn = true;
     private float time_to_spawn_scale = 1;
     private float _correct_angle;
+	
+	public int snakeID;
 
     private void Awake()
     {
