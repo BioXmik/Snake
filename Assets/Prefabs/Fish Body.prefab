@@ -53,6 +53,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   Parent: {fileID: 2506573404991077665}
+  snakeID: 0
 --- !u!58 &6244090484205559602
 CircleCollider2D:
   m_ObjectHideFlags: 0

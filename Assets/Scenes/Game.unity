@@ -588,9 +588,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 290656396}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed072fd4217e654e9f048d7621ea39b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneId: 3919696642
+  _assetId: 0
+  serverOnly: 0
+  visible: 0
+  hasSpawned: 0
 --- !u!1 &298011658
 GameObject:
   m_ObjectHideFlags: 0

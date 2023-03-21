@@ -1,33 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
-public class LocalPlayerCam : MonoBehaviour
+public class LocalPlayerCam : NetworkBehaviour
 {
-	void OnBecameInvisible()
-    {
-        enabled = false;
-    }
+	private Camera mainCamera;
 	
-	void OnBecameVisible()
+	private void Awake()
 	{
-        enabled = true;
-    }
+		mainCamera = Camera.main;
+	}
 	
-    void Update()
-    {
-		GameObject player = GameObject.FindGameObjectWithTag("LocalPlayer");
-		if (player != null)
-		{
-			transform.position = new Vector3 (player.transform.position.x, player.transform.position.y, player.transform.position.z - 20);
-			if (GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<FoodScore>().score < 50)
-			{
-				Camera.main.orthographicSize = 7f;
-			}
-			else
-			{
-				Camera.main.orthographicSize = GameObject.FindGameObjectWithTag("LocalPlayer").GetComponent<FoodScore>().score / 7f;
-			}
-		}
+	void Update()
+	{
+		if (!isLocalPlayer) return;
+		CameraMovement();
+	}
+	
+	private void CameraMovement()
+	{
+		mainCamera.transform.localPosition = new Vector3(transform.position.x, transform.position.y, -1f);
+		transform.position = Vector2.MoveTowards(transform.position, mainCamera.transform.localPosition, Time.deltaTime);
 	}
 }
