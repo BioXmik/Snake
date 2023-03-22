@@ -835,7 +835,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8162707133255803627}
-  - component: {fileID: 1870148341200086484}
   - component: {fileID: 3348669662330227126}
   - component: {fileID: -6012596456627026281}
   - component: {fileID: 2231597288465498198}
@@ -846,6 +845,7 @@ GameObject:
   - component: {fileID: 2305614311407717387}
   - component: {fileID: 3212921396297229034}
   - component: {fileID: 4619953314570761656}
+  - component: {fileID: 4203345911889929374}
   m_Layer: 0
   m_Name: Fish
   m_TagString: Player
@@ -870,21 +870,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1870148341200086484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8399822065990369313}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ed072fd4217e654e9f048d7621ea39b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0.1
 --- !u!114 &3348669662330227126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1088,3 +1073,18 @@ MonoBehaviour:
   foodPrefab: {fileID: 4038294626361054290, guid: 852c63144db45cf459fc95d7d793ce5e, type: 3}
   maxCountNpc: 15
   npcPrefab: {fileID: 2176906955313240531, guid: bdd9fee122955c541993e313e1df250e, type: 3}
+--- !u!114 &4203345911889929374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399822065990369313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ed072fd4217e654e9f048d7621ea39b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0.1

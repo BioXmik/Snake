@@ -27,7 +27,7 @@ public class Npc : NetworkBehaviour
 	}
 	
 	[Server]
-	void Update()
+	void FixedUpdate()
 	{
 		if (targetFood != null)
 		{

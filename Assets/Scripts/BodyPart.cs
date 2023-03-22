@@ -21,7 +21,7 @@ public class BodyPart : NetworkBehaviour
         }
     }
 	
-    private void Update()
+    private void FixedUpdate()
     {
         if (Parent != null)
         {

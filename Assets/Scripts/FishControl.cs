@@ -41,7 +41,7 @@ public class FishControl : NetworkBehaviour
 		mathIdText.text = mathID;
 	}
 
-    void Update()
+    void FixedUpdate()
     {
 		if (isServer)
 		{
