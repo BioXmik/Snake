@@ -7,7 +7,10 @@ using Mirror;
 public class FishControl : NetworkBehaviour
 {
 	public float speed;
+	
+	[SyncVar]
 	public bool run;
+	
 	public float runEnergy;
 	Quaternion RotatePlayer;
 	private Camera cam;
@@ -33,7 +36,7 @@ public class FishControl : NetworkBehaviour
 		{
 			Canvas.SetActive(false);
 		}
-		Update01s();
+		Update001s();
     }
 	
 	public void SetMathText(string mathID)
@@ -60,7 +63,7 @@ public class FishControl : NetworkBehaviour
 			}
 		}
 		
-		if (run == true)
+		if (run == true && isLocalPlayer)
 		{
 			runSlider.value = runSlider.value - 0.1f;
 		}
@@ -71,12 +74,12 @@ public class FishControl : NetworkBehaviour
     }
 	
 	[Client]
-	public void Update01s()
+	public void Update001s()
 	{
 		Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 		float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
 		CmdSetRotate(rotateZ);
-		Invoke("Update01s", 0.02f);
+		Invoke("Update001s", 0.01f);
 	}
 	
 	[Command]

@@ -908,6 +908,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   score: 0
+  partsBodyPlayer: {fileID: 0}
+  partsBodyPlayerPrefab: {fileID: 1773630558284003932, guid: 639d8d037e2e9d449a06688c423b4a21, type: 3}
   fishBodyPrefab: {fileID: 2506573404991077665, guid: 9ca13a79861229040adbb760b2a483b3, type: 3}
   maxCordSpawnFood: 100
   foodPrefab: {fileID: 4038294626361054290, guid: 852c63144db45cf459fc95d7d793ce5e, type: 3}

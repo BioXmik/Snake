@@ -30,7 +30,7 @@ public class grow : NetworkBehaviour
 	}
 	
 	[Server]
-    public void Update()
+    public void FixedUpdate()
 	{
 		float distance = 0;
         if (Parts.Count > 1)
@@ -50,29 +50,27 @@ public class grow : NetworkBehaviour
 	{
 		if(collision.gameObject.tag=="NpcBody" && GetComponent<FishControl>() != null)
 		{
-			for (int n = 1; n < Parts.Count; n++)
+			for (int n = 1; Parts.Count > n; n++)
 			{
-				NetworkServer.Destroy(Parts[n]);
-				Parts.Remove(Parts[n]);
-				
 				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
 				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 				NetworkServer.Spawn(foodObject);
 			}
+			GameObject partsBodyPlayer = GetComponent<FoodScore>().partsBodyPlayer;
+			NetworkServer.Destroy(partsBodyPlayer);
 			NetworkServer.Destroy(gameObject);
 		}
 		
 		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() == null && collision.gameObject.GetComponent<BodyPart>().snakeID != GetComponent<FishControl>().snakeID)
 		{
-			for (int n = 1; n < Parts.Count; n++)
+			for (int n = 1; Parts.Count > n; n++)
 			{
-				NetworkServer.Destroy(Parts[n]);
-				Parts.Remove(Parts[n]);
-				
 				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
 				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 				NetworkServer.Spawn(foodObject);
 			}
+			GameObject partsBodyPlayer = GetComponent<FoodScore>().partsBodyPlayer;
+			NetworkServer.Destroy(partsBodyPlayer);
 			NetworkServer.Destroy(gameObject);
 		}
 		
@@ -80,13 +78,12 @@ public class grow : NetworkBehaviour
 		{
 			for (int n = 1; n < Parts.Count; n++)
 			{
-				NetworkServer.Destroy(Parts[n]);
-				Parts.Remove(Parts[n]);
-				
 				GameObject foodObject = Instantiate(foodPrefab, transform.position, Quaternion.identity);
 				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 				NetworkServer.Spawn(foodObject);
 			}
+			GameObject partsBodyPlayer = GetComponent<FoodScore>().partsBodyPlayer;
+			NetworkServer.Destroy(partsBodyPlayer);
 			NetworkServer.Destroy(gameObject);
 		}
 	}
