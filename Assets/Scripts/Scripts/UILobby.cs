@@ -24,6 +24,9 @@ namespace MirrorBasics {
         [SerializeField] GameObject beginGameButton;
 
         GameObject localPlayerLobbyUI;
+		
+		public InputField countCrystals;
+		public InputField countPlayers;
 
         void Start () {
             instance = this;
@@ -34,15 +37,21 @@ namespace MirrorBasics {
         }
 
         public void HostPublic () {
-            lobbySelectables.ForEach (x => x.interactable = false);
-
-            Player.localPlayer.HostGame (true);
+			if (countCrystals.text != "")
+			{
+				lobbySelectables.ForEach (x => x.interactable = false);
+				
+				Player.localPlayer.HostGame (true, int.Parse(countCrystals.text), int.Parse(countPlayers.text));
+			}
         }
 
         public void HostPrivate () {
-            lobbySelectables.ForEach (x => x.interactable = false);
-
-            Player.localPlayer.HostGame (false);
+			if (countCrystals.text != "" && int.Parse(countCrystals.text) <= 400 && int.Parse(countPlayers.text) <= 12)
+			{
+				lobbySelectables.ForEach (x => x.interactable = false);
+				
+				Player.localPlayer.HostGame (false, int.Parse(countCrystals.text), int.Parse(countPlayers.text));
+			}
         }
 
         public void HostSuccess (bool success, string matchID) {

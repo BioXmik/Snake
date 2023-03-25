@@ -48,7 +48,7 @@ public class grow : NetworkBehaviour
 	[Server]
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.gameObject.tag=="NpcBody" && GetComponent<FishControl>() != null)
+		if(collision.gameObject.tag=="NpcBody" && GetComponent<FishControl>() != null && collision.gameObject.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
 		{
 			for (int n = 1; Parts.Count > n; n++)
 			{
@@ -61,7 +61,7 @@ public class grow : NetworkBehaviour
 			NetworkServer.Destroy(gameObject);
 		}
 		
-		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() == null && collision.gameObject.GetComponent<BodyPart>().snakeID != GetComponent<FishControl>().snakeID)
+		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() == null && collision.gameObject.GetComponent<BodyPart>().snakeID != GetComponent<FishControl>().snakeID && collision.gameObject.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
 		{
 			for (int n = 1; Parts.Count > n; n++)
 			{
@@ -74,7 +74,7 @@ public class grow : NetworkBehaviour
 			NetworkServer.Destroy(gameObject);
 		}
 		
-		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() != null)
+		if(collision.gameObject.tag=="PlayerBody" && GetComponent<Npc>() != null && collision.gameObject.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
 		{
 			for (int n = 1; n < Parts.Count; n++)
 			{

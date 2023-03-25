@@ -62,19 +62,20 @@ namespace MirrorBasics {
             HOST MATCH
         */
 
-        public void HostGame (bool publicMatch) {
+        public void HostGame (bool publicMatch, int countCristals, int countPlayers)
+		{
             string matchID = MatchMaker.GetRandomMatchID ();
-            CmdHostGame (matchID, publicMatch);
+            CmdHostGame (matchID, publicMatch, countCristals, countPlayers);
         }
 
         [Command]
-        void CmdHostGame (string _matchID, bool publicMatch) {
+        void CmdHostGame (string _matchID, bool publicMatch, int countCristals, int countPlayers) {
             matchID = _matchID;
             if (MatchMaker.instance.HostGame (_matchID, this, publicMatch, out playerIndex)) {
                 Debug.Log ($"<color=green>Game hosted successfully</color>");
                 networkMatch.matchId = _matchID.ToGuid ();
 				
-				for (int i = 0; i < maxCountFood; i++)
+				for (int i = 0; i < countCristals; i++)
 				{
 					int newFoodPosX = Random.Range(-maxCordSpawn, maxCordSpawn);
 					int newFoodPosY = Random.Range(-maxCordSpawn, maxCordSpawn);
@@ -96,10 +97,10 @@ namespace MirrorBasics {
 					NetworkServer.Spawn(npcObject, connectionToClient);
 				}
 				
-                TargetHostGame (true, _matchID, playerIndex);
+                TargetHostGame (true, _matchID, countPlayers);
             } else {
                 Debug.Log ($"<color=red>Game hosted failed</color>");
-                TargetHostGame (false, _matchID, playerIndex);
+                TargetHostGame (false, _matchID, countPlayers);
             }
         }
 

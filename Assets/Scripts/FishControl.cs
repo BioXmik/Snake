@@ -36,7 +36,6 @@ public class FishControl : NetworkBehaviour
 		{
 			Canvas.SetActive(false);
 		}
-		Update001s();
     }
 	
 	public void SetMathText(string mathID)
@@ -74,12 +73,11 @@ public class FishControl : NetworkBehaviour
     }
 	
 	[Client]
-	public void Update001s()
+	public void Update()
 	{
 		Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 		float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
 		CmdSetRotate(rotateZ);
-		Invoke("Update001s", 0.01f);
 	}
 	
 	[Command]

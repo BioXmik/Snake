@@ -146,14 +146,14 @@ namespace MirrorBasics {
                         Debug.Log ($"No more players in Match. Terminating {_matchID}");
 						foods = GameObject.FindGameObjectsWithTag("Food");
 						enemys = GameObject.FindGameObjectsWithTag("NpcBody");
-						for (int a = 0; a <= foods.Length; a++)
+						for (int a = 0; foods.Length > a; a++)
 						{
 							if (foods[a].GetComponent<NetworkMatch>().matchId == _matchID.ToGuid())
 							{
 								NetworkServer.Destroy(foods[a]);
 							}
 						}
-						for (int n = 0; n <= enemys.Length; n++)
+						for (int n = 0; enemys.Length > n; n++)
 						{
 							if (enemys[n].GetComponent<NetworkMatch>().matchId == _matchID.ToGuid())
 							{
