@@ -9,9 +9,16 @@ public class Npc : NetworkBehaviour
 	public GameObject[] foods;
 	public GameObject targetFood;
 	
+	public int snakeID;
+	
 	[Server]
     void Start()
     {
+		if (isServer)
+		{
+			snakeID = Random.Range(100000, 9999999);
+		}
+		
         newTargetPos();
 		Update1s();
     }

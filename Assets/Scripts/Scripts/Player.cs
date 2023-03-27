@@ -74,6 +74,7 @@ namespace MirrorBasics {
             if (MatchMaker.instance.HostGame (_matchID, this, publicMatch, out playerIndex)) {
                 Debug.Log ($"<color=green>Game hosted successfully</color>");
                 networkMatch.matchId = _matchID.ToGuid ();
+				GetComponent<NetworkMatch>().matchId = _matchID.ToGuid ();
 				
 				for (int i = 0; i < countCristals; i++)
 				{

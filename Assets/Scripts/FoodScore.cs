@@ -18,6 +18,11 @@ public class FoodScore : NetworkBehaviour
 	[Server]
 	void Start()
 	{
+		if (GetComponent<Npc>() != null)
+		{
+			snakeID = GetComponent<Npc>().snakeID;
+		}
+		
 		if (GetComponent<FishControl>() != null)
 		{
 			snakeID = GetComponent<FishControl>().snakeID;
