@@ -40,17 +40,30 @@ public class grow : NetworkBehaviour
 		
 		for (int n = 1; n < Parts.Count; n++)
         {
-			Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / _gap);
-			Parts[n].transform.rotation = Quaternion.Lerp(Parts[n].transform.rotation, Parts[n - 1].transform.rotation, 10 * Time.deltaTime);
+			if (GetComponent<FishControl>() != null)
+			{
+				if(GetComponent<FishControl>().run)
+				{
+					Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / (_gap / (GetComponent<FishControl>().speed * 0.62f)));
+					Parts[n].transform.rotation = Quaternion.Lerp(Parts[n].transform.rotation, Parts[n - 1].transform.rotation, 10 * Time.deltaTime);
+				}
+				else
+				{
+					Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / _gap);
+					Parts[n].transform.rotation = Quaternion.Lerp(Parts[n].transform.rotation, Parts[n - 1].transform.rotation, 10 * Time.deltaTime);
+				}
+			}
+			else
+			{
+				Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / _gap);
+				Parts[n].transform.rotation = Quaternion.Lerp(Parts[n].transform.rotation, Parts[n - 1].transform.rotation, 10 * Time.deltaTime);
+			}
         }
 	}
 	
 	[Server]
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		Debug.Log(collision.gameObject.GetComponent<NetworkMatch>().matchId);
-		Debug.Log(GetComponent<NetworkMatch>().matchId);
-		
 		if(collision.gameObject.tag=="NpcBody" && GetComponent<FishControl>() != null && collision.gameObject.GetComponent<NetworkMatch>().matchId == GetComponent<NetworkMatch>().matchId)
 		{
 			for (int n = 1; Parts.Count > n; n++)

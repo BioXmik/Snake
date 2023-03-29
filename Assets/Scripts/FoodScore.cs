@@ -70,7 +70,17 @@ public class FoodScore : NetworkBehaviour
 				foodObject.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 				NetworkServer.Spawn(foodObject);
 				
-				GameObject fishBody = Instantiate(fishBodyPrefab, transform.position, Quaternion.identity, partsBodyPlayer.transform);
+				int intBody = GetComponent<grow>().Parts.Count;
+				GameObject lastBody = GetComponent<grow>().Parts[intBody - 1];
+				GameObject fishBody;
+				if (intBody > 1)
+				{
+					fishBody = Instantiate(fishBodyPrefab, lastBody.transform.position, Quaternion.identity, partsBodyPlayer.transform);
+				}
+				else
+				{
+					fishBody = Instantiate(fishBodyPrefab, transform.position, Quaternion.identity, partsBodyPlayer.transform);
+				}
 				fishBody.GetComponent<BodyPart>().snakeID = snakeID;
 				fishBody.GetComponent<NetworkMatch>().matchId = collision.gameObject.GetComponent<NetworkMatch>().matchId;
 				NetworkServer.Spawn(fishBody);

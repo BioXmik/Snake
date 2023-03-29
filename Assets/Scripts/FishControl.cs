@@ -11,6 +11,9 @@ public class FishControl : NetworkBehaviour
 	[SyncVar]
 	public bool run;
 	
+	[SyncVar]
+	public float rotateZ;
+	
 	public float runEnergy;
 	Quaternion RotatePlayer;
 	private Camera cam;
@@ -31,7 +34,6 @@ public class FishControl : NetworkBehaviour
 		{
 			cam = Camera.main;
 			gameObject.tag = "LocalPlayer";
-			Update005s();
 		}
 		else
 		{
@@ -61,6 +63,8 @@ public class FishControl : NetworkBehaviour
 					runEnergy = runEnergy + 0.1f;
 				}
 			}
+			
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotateZ -90), speed / 3 * Time.deltaTime);
 		}
 		
 		if (run == true && isLocalPlayer)
@@ -73,22 +77,13 @@ public class FishControl : NetworkBehaviour
 		}
     }
 	
-	public void Update005s()
+	void Update()
 	{
 		if (isLocalPlayer)
 		{
 			Vector3 diference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-			float rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
-			CmdSetRotate(rotateZ);
-			Invoke("Update005s", 0.05f);
+			rotateZ = Mathf.Atan2(diference.y, diference.x) * Mathf.Rad2Deg;
 		}
-	}
-	
-	[Command]
-	public void CmdSetRotate(float rotateZ)
-	{
-		transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotateZ -90), Time.deltaTime);
-		//transform.rotation = Quaternion.Euler(0f, 0f, rotateZ - 90);
 	}
 	
 	[Command]

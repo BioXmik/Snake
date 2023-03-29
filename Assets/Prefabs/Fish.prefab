@@ -882,11 +882,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bd390dc207917a43b03eef81c7677b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.01
   speed: 5
   run: 0
+  rotateZ: 0
   runEnergy: 100
   runSlider: {fileID: 8722427805575505820}
   Canvas: {fileID: 5438764378357382579}
