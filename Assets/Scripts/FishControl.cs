@@ -64,7 +64,7 @@ public class FishControl : NetworkBehaviour
 				}
 			}
 			
-			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotateZ -90), speed / 3 * Time.deltaTime);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, 0, rotateZ -90), speed / 10);
 		}
 		
 		if (run == true && isLocalPlayer)
