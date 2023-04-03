@@ -44,7 +44,7 @@ public class grow : NetworkBehaviour
 			{
 				if(GetComponent<FishControl>().run)
 				{
-					Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / (_gap / (GetComponent<FishControl>().speed * 0.62f)));
+					Parts[n].transform.position = Vector2.Lerp(Parts[n].transform.position, Parts[n - 1].transform.position, distance / (_gap / (GetComponent<FishControl>().speed * 0.3f)));
 					Parts[n].transform.rotation = Quaternion.Lerp(Parts[n].transform.rotation, Parts[n - 1].transform.rotation, 10 * Time.deltaTime);
 				}
 				else
